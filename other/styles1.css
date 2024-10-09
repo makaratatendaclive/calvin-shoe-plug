@@ -1,0 +1,11 @@
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }

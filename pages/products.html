@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1,0">
+        <title>Products</title>
+        <link rel="stylesheet" href="http://localhost:5500/other/style.css">
+    </head>
+<body class="">
+    <header class="header">
+        <a href="#" class="logo"><img src="http://localhost:5500/logo.png" alt=""></a>
+        <nav class="navbar">
+            <a href="http://localhost:5500\main.html">Home</a>
+            <a href="http://localhost:5500\pages\products.html">Products</a>
+            <a href="http://localhost:5500\pages\about.html" >About Us</a>
+            <a href="http://localhost:5500\pages\contact.html" >Contact Us</a>
+        </nav>
+         <div class="icons">
+            <a href=""><img src="http://localhost:5500/picture/Screenshot (11).png" width="35px" class="search" id="search-btn"></a>
+            <img src="http://localhost:5500/picture/Screenshot__10_-removebg-preview.png" width="70px" class="iconCart" id="cart-btn" onclick="toggleCart()">
+            <a href=""><img src="http://localhost:5500/picture/Screenshot (12).png" width="28px" class="bars" id="menu-btn"></a>
+        </div>
+    </header>
+
+    <div class="listProduct lp1">
+        <div class="item">
+            <img src="http://localhost:5500\picture\offwhitej1.png" alt="">
+            <h2>Off-White j1</h2>
+            <div class="price">$45.00</div>
+            <button onclick="addToCart('Off-White j1', 45.00, 'cartpic/offwhitej1rev.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <section class="listProduct lp2">
+        <div class="item">
+            <img src="http://localhost:5500\picture\j4blue.png" alt="" >
+        <h2>Jordan 4</h2>
+<div class="price">$35.00</div>
+
+<button onclick="addToCart('Jordan 4', 35.00, 'cartpic/j4blue.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </section>
+
+    <div class="listProduct lp3">
+        <div class="item">
+            <img src="http://localhost:5500\picture\j1.png" alt="" >
+        <h2>Jordan1 </h2>
+<div class="price">$30.00</div>
+<button onclick="addToCart('Jordan 1', 35.00, 'cartpic/j1.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="listProduct lp4">
+        <div class="item">
+            <img src="http://localhost:5500\picture\j1lowcut.png" alt="" >
+        <h2>J1 LowCut</h2>
+<div class="price">$25.00</div>
+<button onclick="addToCart('Jordan 1 LowCut', 25.00, 'cartpic/j1lowcut.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="listProduct lp5">
+        <div class="item">
+            <img src="http://localhost:5500\picture\dior.png" alt="" >
+        <h2>Dior Homme</h2>
+<div class="price">$60.00</div>
+<button onclick="addToCart('Dior Homme', 60.00, 'cartpic/dior.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="listProduct lp6">
+        <div class="item">
+            <img class="j3shoe" src="http://localhost:5500\picture\j3.png" alt="" >
+        <h2>Jordan 3</h2>
+<div class="price">$40.00</div>
+<button onclick="addToCart('Jordan 3', 40.00, 'cartpic/j3.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="listProduct lp7">
+        <div class="item">
+            <img class="j3shoe" src="http://localhost:5500\picture\timber.png" alt="" >
+        <h2>Jordan 3</h2>
+<div class="price">$40.00</div>
+<button onclick="addToCart('Timberland', 60.00, 'cartpic/timber.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="listProduct lp8">
+        <div class="item">
+            <br>
+            <br><br><br>
+            <img class="" src="http://localhost:5500\picture\j6.png" alt="" >
+            <br>
+        <h2>Jordan 6</h2>
+<div class="price">$40.00</div>
+<button onclick="addToCart('Jordan 6', 40.00, 'cartpic/j6.png')" class="addtoCart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cartTab" id="cartDiv">
+        <h1>Shopping Cart</h1>
+        <div class="listCart" id="cartItems">
+            <p>No items in cart.</p>
+        </div>
+        <div class="total" id="cartTotal">Total: $0.00</div>
+        <div class="btn">
+            <button class="close" style="background-color: red;border:none;height: 48px;width:180px;font-weight: 500;" onclick="toggleCart()">CLOSE</button>
+            <a href="checkout.html"><button class="checkout" style="background-color: rgb(0, 166, 255);border:2px black;height: 48px;width:180px;font-weight: 500;"id="checkoutBtn" onclick="checkout()">CHECKOUT - $0.00</button></a>
+        </div>
+    </div>
+
+    <script>
+  let cartItems = [];
+
+function addToCart(productName, productPrice, productImage) {
+    const existingItem = cartItems.find(item => item.name === productName);
+    
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        const newItem = { name: productName, price: productPrice, image: productImage, quantity: 1 };
+        cartItems.push(newItem);
+    }
+    updateCart(); // Update the cart display
+}
+
+function reduceQuantity(productName) {
+    const existingItem = cartItems.find(item => item.name === productName);
+    
+    if (existingItem) {
+        existingItem.quantity--;
+        if (existingItem.quantity === 0) {
+            cartItems = cartItems.filter(item => item.name !== productName); // Remove item if quantity is zero
+        }
+    }
+    updateCart(); // Update the cart display
+}
+
+function updateCart() {
+    const cartItemsDiv = document.getElementById('cartItems');
+    const cartTotalDiv = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    cartItemsDiv.innerHTML = ''; // Clear current cart display
+    let total = 0; // Initialize total
+
+    if (cartItems.length === 0) {
+        cartItemsDiv.innerHTML = '<p>No items in cart.</p>';
+        cartTotalDiv.innerHTML = 'Total: $0.00'; // Reset total
+        checkoutBtn.innerHTML = 'CHECKOUT - $0.00'; // Reset checkout button total
+        return;
+    }
+
+    cartItems.forEach(item => {
+        const itemTotal = item.price * item.quantity; // Calculate total for the item
+        total += itemTotal; // Add item total to grand total
+        cartItemsDiv.innerHTML += `
+            <div class="item">
+                <div class="image"><img src="${item.image}" alt="${item.name}"></div>
+                <div class="name">${item.name} (x${item.quantity})</div>
+                <div class="totalPrice">$${itemTotal.toFixed(2)}</div>
+                <button onclick="reduceQuantity('${item.name}')" class="reduceQuantity">-</button>
+            </div>
+        `;
+    });
+
+    cartTotalDiv.innerHTML = `Total: $${total.toFixed(2)}`; // Update total display
+    checkoutBtn.innerHTML = `CHECKOUT - $${total.toFixed(2)}`; // Update checkout button total
+}
+
+function toggleCart() {
+    const cartDiv = document.getElementById('cartDiv');
+    cartDiv.style.display = cartDiv.style.display === 'none' || cartDiv.style.display === '' ? 'block' : 'none';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{ "products":{"data":{
+
+"items":[
+    {
+"id":1,
+"name": "Off-White J1",
+"price": 45,
+"image":"picture/offwhitej1.png"
+},
+{
+    "id":2,
+"name": "J1 Lowcut",
+"price": 25,
+"image":"picture/j1lowcut.png"
+},
+{
+    "id":3,
+"name": "Jordan 4",
+"price": 35,
+"image":"picture/j4blue.png"
+},
+{
+    "id":4,
+"name": "Jordan 1",
+"price": 30,
+"image":"picture/j1.png"
+},
+{
+    "id":5,
+"name": "Airforce 1",
+"price": 25,
+"image":"picture/af1.png"
+}
+]
+}}}
